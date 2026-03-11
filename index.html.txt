@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>OLD MONK LOVES MANDA KASHYAAM</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(135deg,#fff0f5,#ffe4e1);
+}
+
+/* LOADING SCREEN */
+
+.loading{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-size:30px;
+}
+
+.loadingText{
+margin-bottom:10px;
+}
+
+.bigBalloon{
+font-size:90px;
+margin-bottom:5px;
+display:inline-block;
+animation:balloonFloat 3s infinite ease-in-out;
+transform-origin:center bottom;
+}
+
+@keyframes balloonFloat{
+
+0%{
+transform:translateY(0) rotate(-3deg);
+}
+
+50%{
+transform:translateY(-40px) rotate(3deg);
+}
+
+100%{
+transform:translateY(0) rotate(-3deg);
+}
+
+}
+  .loadingSubText{
+margin-top:10px;
+font-size:16px;
+color:#666;
+}
+
+/* BALLOON BOUNCE */
+
+.balloonContainer{
+display:flex;
+gap:25px;
+}
+
+.balloon{
+font-size:50px;
+display:inline-block;
+animation:bounce 1.2s infinite;
+}
+
+.balloon:nth-child(2){animation-delay:0.2s;}
+.balloon:nth-child(3){animation-delay:0.4s;}
+.balloon:nth-child(4){animation-delay:0.6s;}
+.balloon:nth-child(5){animation-delay:0.8s;}
+
+@keyframes bounce{
+0%{transform:translateY(0);}
+50%{transform:translateY(-60px);}
+100%{transform:translateY(0);}
+}
+
+/* MAIN CARD */
+
+.main{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.photo{
+width:150px;
+height:150px;
+border-radius:50%;
+border:5px solid gold;
+object-fit:cover;
+}
+
+h1{
+color:#ff4d6d;
+}
+
+.note{
+margin-top:10px;
+font-size:18px;
+color:#444;
+}
+
+button{
+margin-top:20px;
+padding:15px 30px;
+font-size:18px;
+border:none;
+background:#ff4d6d;
+color:white;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* FLOATING HEARTS */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:26px;
+animation:floatUp 4s linear forwards;
+pointer-events:none;
+z-index:9999;
+filter:drop-shadow(0 0 6px #ff4d6d)
+       drop-shadow(0 0 12px #ff4d6d);
+}
+
+@keyframes floatUp{
+
+0%{
+transform:translateY(0) translateX(0) scale(0.8);
+opacity:1;
+}
+
+50%{
+transform:translateY(-400px) translateX(40px) scale(1.2);
+opacity:0.9;
+}
+
+100%{
+transform:translateY(-800px) translateX(-40px) scale(0.6);
+opacity:0;
+}
+
+}
+
+/* CONFETTI */
+
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+top:50%;
+left:50%;
+opacity:0.9;
+z-index:9999;
+animation:confettiFall 2.5s linear forwards;
+}
+
+@keyframes confettiFall{
+0%{transform:translate(0,0) rotate(0deg);opacity:1;}
+100%{transform:translate(var(--x),var(--y)) rotate(720deg);opacity:0;}
+} 
+
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 15px #ff4d6d;
+transition:0.3s;
+}
+.loveSearch{
+margin-top:20px;
+padding:12px 20px;
+border-radius:30px;
+background:white;
+border:2px solid #ff4d6d;
+font-size:18px;
+
+display:block;
+margin-left:auto;
+margin-right:auto;
+
+width:fit-content;
+max-width:350px;
+
+text-align:center;
+
+box-shadow:0 0 10px rgba(255,77,109,0.4);
+transition:0.3s;
+}
+
+.loveSearch:hover{
+box-shadow:0 0 20px #ff4d6d;
+transform:scale(1.05);
+}
+
+.loveSearch:hover{
+box-shadow:0 0 20px #ff4d6d;
+transform:scale(1.05);
+} 
+
+ .balloonString{
+width:2px;
+height:60px;
+background:#555;
+margin-top:-10px;
+}
+.photoContainer{
+position:relative;
+display:inline-block;
+}
+
+.crown{
+position:absolute;
+top:-45px;
+left:50%;
+transform:translateX(-50%);
+font-size:50px;
+}
+  
+/* BALLOON POP SCREEN */
+
+.balloonScreen{
+display:none;
+height:100vh;
+width:100%;
+position:relative;
+overflow:hidden;
+background:linear-gradient(180deg,#ffe6f0,#fff0f5);
+}
+
+.balloonArea{
+position:absolute;
+width:100%;
+height:100%;
+}
+
+.popBalloon{
+position:absolute;
+font-size:150px;
+cursor:pointer;
+animation:bounceBalloon 1.8s infinite ease-in-out;
+}
+
+@keyframes bounceBalloon{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-40px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+.surpriseCounter{
+position:absolute;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:white;
+padding:10px 20px;
+border-radius:25px;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+font-size:18px;
+}
+.surprisePopup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.surpriseCard{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+max-width:350px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.surprisePhoto{
+width:100%;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+.surpriseMessage{
+background:#fff0f5;
+padding:12px;
+border-radius:10px;
+font-size:16px;
+} 
+/* BALLOON BURST */
+
+.popBalloon.burst{
+animation:burstBalloon 0.3s forwards;
+}
+
+@keyframes burstBalloon{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.4);
+}
+
+100%{
+transform:scale(0);
+opacity:0;
+}
+
+}  
+@keyframes finalBounce{
+0%{transform:translateY(0);}
+50%{transform:translateY(-60px);}
+100%{transform:translateY(0);}
+}
+
+@keyframes heartGrow{
+0%{font-size:10px;}
+100%{font-size:2000px;}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<div class="loading">
+
+<div class="bigBalloon">🎈</div>
+
+<div class="loadingText">Loading your surprise 💌</div>
+
+<div class="loadingSubText">
+Please wait while we prepare the magic ✨
+</div>
+
+
+
+</div>
+<div class="main">
+
+<div class="card">
+
+<h1>Hii Kavya B</h1>
+
+<div class="photoContainer">
+<div class="crown">👑</div>
+<img src="photo.jpg" class="photo">
+
+<div class="loveSearch">
+Enoda OLD MONK Thanga Pulla 💌🌠🛐
+</div>
+
+<p class="note">
+It's all started from the "Old Monk" and "Manda Kashayam". Now look at us, we're together.
+I'm lucky to have you in my life. Love u dii ma <3
+</p>
+
+<button onclick="startMagic()">Start the Magic ✨</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BALLOON POP SCREEN -->
+
+<div class="balloonScreen" id="balloonScreen">
+
+<h2 class="surpriseCounter">
+🎁 Surprises Remaining: <span id="remaining">6</span>
+</h2>
+
+<div class="balloonArea" id="balloonArea"></div>
+<div class="surprisePopup" id="surprisePopup">
+
+<div class="surpriseCard">
+
+<img id="surpriseImg" class="surprisePhoto">
+
+<div id="surpriseText" class="surpriseMessage"></div>
+
+</div>
+
+</div>
+
+</div> 
+<!-- TEASING MESSAGE SCREEN -->
+
+<div id="teaseScreen" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#fff0f5;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:28px;
+text-align:center;
+padding:40px;
+z-index:9999;
+">
+
+You saw my favourite picture of you…  
+but don't try to escape with that 😌  
+<br><br>
+Now let's see my choice of our favourite picture together.
+
+</div>
+
+
+<!-- FINAL BALLOON -->
+
+<div id="finalBalloonScreen" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#fff0f5;
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+<div id="finalBalloon" style="
+font-size:200px;
+cursor:pointer;
+animation:finalBounce 1.5s infinite ease-in-out;
+">🎈</div>
+
+</div>
+
+
+<!-- FINAL PHOTO -->
+
+<div id="finalPhotoScreen" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#fff0f5;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+z-index:9999;
+display:none;
+">
+
+<img src="final.jpg" style="
+max-width:350px;
+border-radius:20px;
+margin-bottom:20px;
+">
+
+<div style="
+font-size:22px;
+background:white;
+padding:15px;
+border-radius:15px;
+">
+My favourite picture of us. OLD MONK லவஂஸஂ MANDA KASHAYAM
+</div>
+
+</div>
+
+
+<!-- HEART ENDING -->
+
+<div id="heartEnding" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:10px;
+z-index:10000;
+animation:heartGrow 4s forwards;
+">❤️</div>  
+  
+<script>
+
+let remaining = 6;
+let popupOpen = false;
+let surprises = [
+
+{
+img:"surprise1.jpg",
+text:`The first picture after we finally said what we both felt.
+The moment we stopped pretending and started being us.`
+},
+
+{
+img:"surprise2.jpg",
+text:`Our first coffee date together…
+and somehow it felt more special than all the others.`
+},
+
+{
+img:"surprise3.jpg",
+text:`Our first movie together — Thalaivan Thalaivi.
+A family drama… and a title that literally means husband and wife.`
+},
+
+{
+img:"surprise4.jpg",
+text:`My first gift to you —
+Stay hydrated, don't lose my bujjuk bujjuk.`
+},
+
+{
+img:"surprise5.jpg",
+text:`The first selfie you took of us —
+and I’m glad you did.`
+},
+
+{
+img:"surprise6.jpg",
+text:`That shy laugh you try to hide…
+my favorite moment.`
+
+}
+
+];
+setTimeout(function(){
+
+createHearts();
+
+document.querySelector(".loading").style.display="none";
+document.querySelector(".main").style.display="flex";
+
+},4000);
+
+function startMagic(){
+
+confettiExplosion();
+
+document.querySelector(".main").style.display="none";
+document.getElementById("balloonScreen").style.display="block";
+
+  
+createBalloons();
+
+}
+
+function createBalloons(){
+
+let area=document.getElementById("balloonArea");
+
+let positions=[
+{top:"20%",left:"20%"},
+{top:"25%",left:"60%"},
+{top:"35%",left:"80%"},
+{top:"65%",left:"20%"},
+{top:"70%",left:"55%"},
+{top:"55%",left:"75%"}
+];
+
+for(let i=0;i<6;i++){
+
+let balloon=document.createElement("div");
+
+balloon.className="popBalloon";
+balloon.innerHTML="🎈";
+
+balloon.style.top=positions[i].top;
+balloon.style.left=positions[i].left;
+
+balloon.onclick=function(){
+popBalloon(balloon,i);
+};
+
+area.appendChild(balloon);
+
+}
+
+}
+
+function popBalloon(balloon,index){
+
+if(popupOpen) return;
+
+popupOpen = true;
+
+balloon.classList.add("burst");
+
+setTimeout(function(){
+balloon.remove();
+},300);
+
+remaining--;
+
+document.getElementById("remaining").innerText=remaining;
+
+if(remaining === 0){
+setTimeout(startFinalSequence,10000);
+}
+let popup=document.getElementById("surprisePopup");
+
+document.getElementById("surpriseImg").src=surprises[index].img;
+document.getElementById("surpriseText").innerText=surprises[index].text;
+
+popup.style.display="flex";
+
+setTimeout(function(){
+
+popup.style.display="none";
+popupOpen = false;
+
+},10000);
+
+}
+
+
+
+function createHearts(){
+
+let colors=["❤️","💖","💗","💓","💘"];
+
+for(let i=0;i<25;i++){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML=colors[Math.floor(Math.random()*colors.length)];
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+}
+
+}
+
+function confettiExplosion(){
+
+for(let i=0;i<80;i++){
+
+let conf=document.createElement("div");
+
+conf.className="confetti";
+
+let colors=["#ff4d6d","#ffcc00","#00e5ff","#7cff00","#ff6ec7"];
+
+conf.style.background=colors[Math.floor(Math.random()*colors.length)];
+
+let x=(Math.random()-0.5)*800+"px";
+let y=(Math.random()-0.5)*600+"px";
+
+conf.style.setProperty("--x",x);
+conf.style.setProperty("--y",y);
+
+document.body.appendChild(conf);
+
+setTimeout(()=>{
+conf.remove();
+},2500);
+
+}
+
+}
+
+function startFinalSequence(){
+
+document.getElementById("balloonScreen").style.display="none";
+
+let tease=document.getElementById("teaseScreen");
+tease.style.display="flex";
+
+setTimeout(function(){
+
+tease.style.display="none";
+
+let finalScreen=document.getElementById("finalBalloonScreen");
+finalScreen.style.display="flex";
+
+let balloon=document.getElementById("finalBalloon");
+
+balloon.onclick=function(){
+
+balloon.style.transition="transform 0.3s";
+balloon.style.transform="scale(0)";
+finalScreen.style.display="none";
+
+let photo=document.getElementById("finalPhotoScreen");
+photo.style.display="flex";
+
+setTimeout(function(){
+
+photo.style.display="none";
+
+let heart=document.getElementById("heartEnding");
+heart.style.display="block";
+
+},10000);
+
+};
+
+},10000);
+
+}
+</script>
+
+</body>
+</html>
